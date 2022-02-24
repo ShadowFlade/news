@@ -4,24 +4,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js"></script>
   <title>Document</title>
 </head> 
 <body>
   <?php
-  mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $con= mysqli_connect('localhost','root','root');
-    mysqli_select_db($con,'news');
-    $results_per_page=10;
-    $sql='SELECT * FROM news';
-    $result=mysqli_query($con,$sql);
-    echo $number_of_results=mysqli_num_rows($result);
+    // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    // $con= mysqli_connect('localhost','root','root');
+    // mysqli_select_db($con,'news');
+    // $results_per_page=10;
+    // $sql='SELECT * FROM news';
+    // $result=mysqli_query($con,$sql);
+    // $number_of_results=mysqli_num_rows($result);
     $number_of_pages=ceil($number_of_results/$results_per_page);
     
-      if(!isset($_GET['page'])){
-        $page=1;
-      } else {
-        $page=$_GET['page'];
-      }
+      // if(!isset($_GET['page'])){
+      //   $page=1;
+      // } else {
+      //   $page=$_GET['page'];
+      // }
 
      $this_page_first_result=($page-1)*$results_per_page;
      $sql='SELECT * FROM news LIMIT ' . $this_page_first_result . ',' . $results_per_page;
