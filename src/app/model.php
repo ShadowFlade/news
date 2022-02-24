@@ -13,7 +13,7 @@ class Model {
     $this->getAllResults();
   }
   function getAllResults(){
-    $sql="SELECT * FROM news";
+    $sql="SELECT * FROM news ORDER BY idate DESC";
     $result=mysqli_query($this->con,$sql);
     $this->numberOfResults=mysqli_num_rows($result);
     $this->numberOfPages=$this->numberOfResults / $this->resultsPerPage;
