@@ -13,7 +13,6 @@ require_once 'view.php';
       $this->model=new Model($resultsPerPage,$pageRange);
       $this->resultsPerPage=$resultsPerPage;
       $this->pageRange=$pageRange;
-
     }
     function init(){
       $this->model->connect();
@@ -44,6 +43,9 @@ require_once 'view.php';
         $page=$this->model->closeResults[$pageNumber];
         $this->view->renderPage($pageNumber);
       }
+    }
+    function renderPagination(){
+      $this->view->renderPagination($this->model->getAllResults()['numberOfPages']);
     }
     
 }

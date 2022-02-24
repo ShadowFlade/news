@@ -30,9 +30,16 @@ $pagination->start();
         ?>
         </div>
         <div class="news__pagination">
+          <div class="pagination__title">
+            Страницы:
+          </div>
+          <ul class="pagination">
+
           <?php
-            $pagination
+            $pagination->renderPagination();
           ?>
+          </ul>
+         
         </div>
 
       </div>

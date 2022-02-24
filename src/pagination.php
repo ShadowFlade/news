@@ -17,4 +17,7 @@ class Pagination {
   function renderFirstPage(){
     $this->controller->renderFirstPage();
   }
+  function renderPagination(){
+    $this->controller->renderPagination();
+  }
 }

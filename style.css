@@ -1,3 +1,6 @@
+:root {
+  --red-color: rgb(131, 43, 91);
+}
 html {
   font-size: 14px;
 }
@@ -16,21 +19,27 @@ html {
   color: black;
   text-align-last: left;
   padding: 0.3rem;
-  border-bottom: 1px dotted rgb(191, 147, 170);
 }
 
 .news__items {
-  margin-top: 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dotted rgb(191, 147, 170);
+  border-top: 1px dotted rgb(191, 147, 170);
 }
 
 .article {
   margin-top: 0.5rem;
 }
+.article__header {
+  display: flex;
+}
 
 .article__date {
-  background-color: rgb(131, 43, 91);
+  background-color: var(--red-color);
   color: white;
-  display: inline;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .article__title {
   margin-left: 0.3rem;
@@ -44,4 +53,31 @@ html {
 }
 .article__text {
   margin-top: 0.5rem;
+}
+
+.news__pagination {
+  margin-top: 0.5rem;
+}
+.pagination__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.3rem 0;
+}
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+}
+.pagination__item {
+  background-color: grey;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 3px;
+  margin: 2px;
+  width: 1.6rem;
+}
+
+.pagination__item--clicked {
+  background-color: var(--red-color);
 }
