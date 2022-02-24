@@ -13,7 +13,7 @@ class View
 	}
 	function renderPagination($numberOfPages){
 		foreach (range(1,$numberOfPages) as $key => $value) {
-			echo "<li><a class='pagination__item' href='news.php?page=" . $value . "'/>". $value;
+			echo "<li><a class='pagination__item' href='news.php?page=" . $value . "'/>". $value . "</a></li>";
 		}
 	}
 }

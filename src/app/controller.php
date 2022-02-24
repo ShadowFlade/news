@@ -16,13 +16,6 @@ require_once 'view.php';
     }
     function init(){
       $this->model->connect();
-
-      if(!isset($_GET['page'])){
-        $page=1;
-      } else {
-        $page=$_GET['page'];
-      }
-
     }
     function requestResults($pageNumber){
       $result;
@@ -51,7 +44,7 @@ require_once 'view.php';
       }
     }
     function renderPagination(){
-      $this->view->renderPagination($this->model->getAllResults()['numberOfPages']);
+      $numberOfPages=floor($this->model->getAllResults()['numberOfPages']);
+      $this->view->renderPagination($numberOfPages);
     }
-    
 }

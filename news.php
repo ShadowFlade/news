@@ -33,7 +33,6 @@ $pagination->start();
             Страницы:
           </div>
           <ul class="pagination">
-
           <?php
             $pagination->renderPagination();
           ?>

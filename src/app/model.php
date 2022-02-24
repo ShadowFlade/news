@@ -21,7 +21,7 @@ class Model {
     $result=mysqli_query($this->con,$sql);
     $pages=array();
     $page=array();
-    $articleCount=0;
+    $articleCount=1;
     $pageCount=$thePage-5;
     while($row=mysqli_fetch_array($result)){
       $article=array(
@@ -34,8 +34,9 @@ class Model {
       $page[$articleCount]=$article;
       $articleCount++;
       if ($articleCount % $this->resultsPerPage === 0){
-        $pages["$pageCount"]=$page;
+        $pages[$pageCount]=$page;
         $pageCount++;
+        $page=null;
       }
     }
     $closeResults=$pages;
