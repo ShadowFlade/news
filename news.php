@@ -1,6 +1,5 @@
 <?php
 require_once 'src/pagination.php';
-
 $pagination=new Pagination(5,5);
 $pagination->start();
 ?>
@@ -26,7 +25,7 @@ $pagination->start();
       <div class="news__content">
         <div class="news__items">
         <?php
-          $pagination->renderFirstPage();
+          $pagination->renderPage();
         ?>
         </div>
         <div class="news__pagination">
@@ -39,9 +38,7 @@ $pagination->start();
             $pagination->renderPagination();
           ?>
           </ul>
-         
         </div>
-
       </div>
     </div>
   </div>

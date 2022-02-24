@@ -14,6 +14,9 @@ class Pagination {
     $this->controller=new Controller($this->resultsPerPage,$this->pageRange);
     $this->controller->init();
   }
+  function renderPage(){
+    $this->controller->renderPage();
+  }
   function renderFirstPage(){
     $this->controller->renderFirstPage();
   }

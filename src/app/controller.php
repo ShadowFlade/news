@@ -22,6 +22,7 @@ require_once 'view.php';
       } else {
         $page=$_GET['page'];
       }
+
     }
     function requestResults($pageNumber){
       $result;
@@ -35,13 +36,18 @@ require_once 'view.php';
       $firstPage=$this->model->getCloseResults(1)[0];
       $this->view->renderArticlesOnPage($firstPage);
     }
-    function renderPage($pageNumber){
-      if ($this->model.closeResult[$pageNumber]!==null){ //TODO ?
-        $this->view->renderPage($pageNumber);
+    function renderPage(){
+      $paramsField = explode('?', $_SERVER['REQUEST_URI'])[1];
+      $params=explode('=',$paramsField);
+      $pageNumber=$params[1];
+      $page=$this->model->closeResults[$pageNumber];
+      if ($page!==null){ 
+        echo 'not null';
+        $this->view->renderArticlesOnPage($page);
       } else {
         $this->model->getCloseResults($pageNumber);
         $page=$this->model->closeResults[$pageNumber];
-        $this->view->renderPage($pageNumber);
+        $this->view->renderArticlesOnPage($page);
       }
     }
     function renderPagination(){
