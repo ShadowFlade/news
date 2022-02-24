@@ -10,19 +10,17 @@ class Model {
   function connect(){
     $this->con= mysqli_connect('localhost','root','root');
     mysqli_select_db($this->con,'news');
+    $this->getAllResults();
   }
-  public function getCloseResults($thePage){
-    $startingArticle=$this->resultsPerPage*($thePage-5);
-    if($startingArticle<0){
-      $startingArticle=0;
-    }
-    $endingArticle=$this->resultsPerPage * ($thePage+5);
-    $sql="SELECT * FROM news WHERE id BETWEEN $startingArticle AND $endingArticle";
+  function getAllResults(){
+    $sql="SELECT * FROM news";
     $result=mysqli_query($this->con,$sql);
-    $pages=array();
+    $this->numberOfResults=mysqli_num_rows($result);
+    $this->numberOfPages=$this->numberOfResults / $this->resultsPerPage;
+    $this->allPages=array();
     $page=array();
     $articleCount=1;
-    $pageCount=$thePage-5;
+    $pageCount=1;
     while($row=mysqli_fetch_array($result)){
       $article=array(
         'id'=>$row['id'],
@@ -33,26 +31,15 @@ class Model {
       );
       $page[$articleCount]=$article;
       $articleCount++;
-      if ($articleCount % $this->resultsPerPage === 0){
-        $pages[$pageCount]=$page;
+      if ($articleCount % $this->resultsPerPage === 1){
+        $this->allPages[$pageCount]=$page;
         $pageCount++;
         $page=null;
       }
     }
-    $closeResults=$pages;
-    $this->closeResults=$closeResults;
-    return $closeResults;
-  }
-  function getAllResults(){
-    $sql="SELECT * FROM news";
-    $result=mysqli_query($this->con,$sql);
-    $numberOfResults=mysqli_num_rows($result);
-    $numberOfPages=$numberOfResults / $this->resultsPerPage;
-    $this->allResults=$result;
-    $this->numberOfPages=$numberOfPages;
     return array(
-      'result'=>$result,
-      'numberOfPages'=>$numberOfPages
+      'result'=>$this->allPages,
+      'numberOfPages'=>$this->numberOfPages
     );
   }
 

@@ -10,7 +10,6 @@ class Pagination {
   }
 
    function start(){
-    $routes=explode('/',$_SERVER['REQUEST_URI']);
     $this->controller=new Controller($this->resultsPerPage,$this->pageRange);
     $this->controller->init();
   }
