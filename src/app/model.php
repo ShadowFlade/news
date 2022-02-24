@@ -1,20 +1,28 @@
 <?php
 class Model {
-  public $resultsPerPage=5;
-  public $pageRange=5;//amount of pages loaded at once
+  public $resultsPerPage;
+  public $pageRange;
   // private allResults=array();
+  function __construct($resultsPerPage,$pageRange){
+    $this->resultsPerPage=$resultsPerPage;
+    $this->pageRange=$pageRange;
+  }
   function connect(){
     $this->con= mysqli_connect('localhost','root','root');
     mysqli_select_db($this->con,'news');
   }
   public function getCloseResults($thePage){
-    $start=$resultPerPage*($thePage-5);
-    $end=$resultPerPage*($thePage+5);
-    $sql="SELECT * FROM news WHERE id BETWEEN $start * $end";
+
+    $start=$this->resultsPerPage*($thePage-5);
+    if($start<0){
+      $start=0;
+    }
+    $end=$this->resultsPerPage * ($thePage+5);
+    $sql="SELECT * FROM news WHERE id BETWEEN $start AND $end";
     $result=mysqli_query($this->con,$sql);
     $number_of_results=mysqli_num_rows($result);
-    $toReturn=array();
-    $pageToInclude=array();
+    $pages=array();
+    $page=array();
     $i=0;
     $pageCount=$start;
     while($row=mysqli_fetch_array($result)){
@@ -23,14 +31,15 @@ class Model {
         'title'=>$row['announce'],
         'content'=>$row['content']
       );
-      $pageToInclude["$i"]=$article;
+      $page[$i]=$article;
       $i++;
-      if (i % $this->resultPerPage === 0){
-        $toReturn["$pageCount"]=$pageToInclude;
+      if ($i % $this->resultsPerPage === 0){
+        $pages["$pageCount"]=$page;
+        $pageCount++;
       }
-      $pageCount++;
     }
-    $closeResults=$toReturn;
+    $closeResults=$pages;
+    return $closeResults;
   }
 
 }
