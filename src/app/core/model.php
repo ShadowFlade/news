@@ -1,11 +1,8 @@
 <?php
 class Model {
   public $resultsPerPage;
-  public $pageRange;
-  // private allResults=array();
-  function __construct($resultsPerPage,$pageRange){
+  function __construct($resultsPerPage){
     $this->resultsPerPage=$resultsPerPage;
-    $this->pageRange=$pageRange;
   }
   function connect(){
     $this->con= mysqli_connect('localhost','root','root');

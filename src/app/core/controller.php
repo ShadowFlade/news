@@ -1,33 +1,28 @@
 <?php
-require_once 'model.php';
-require_once 'view.php';
-
   class Controller {
     public $resultsPerPage;
-    public $pageRange;
     public $model;
     public $view;
 
-    function __construct($resultsPerPage,$pageRange){
+    function __construct($resultsPerPag){
       $this->view = new View();
-      $this->model=new Model($resultsPerPage,$pageRange);
+      $this->model=new Model($resultsPerPage);
       $this->resultsPerPage=$resultsPerPage;
-      $this->pageRange=$pageRange;
     }
     function init(){
       $this->model->connect();
     }
-    function renderPage(){
+    static function renderPage(){
       $uri=$_SERVER['REQUEST_URI'];
       $paramsField = explode('?', $uri)[1];
       $params=explode('=',$paramsField);
       if(strpos($uri,'news')){
         echo 'rendering news';
         $this->renderNews($paramsField,$params);
-      } elseif(strpos($uri,'view')) {
+    } elseif(strpos($uri,'view')) {
           echo 'rendering full article';
           $this->renderFullArticle($paramsField,$params);
-        }
+    } 
       }
     
     function renderPagination(){
@@ -54,6 +49,9 @@ require_once 'view.php';
       $pageNumber=floor($articleId/5);
       $article=$this->model->getAllResults()['result'][$pageNumber][$articleId];
       $this->view->renderFullArticle($article);
+    }
+    private function render(){
+      include 'D:\programfiles\openserver\openserver\domains\techart\news.php';
     }
 
 
