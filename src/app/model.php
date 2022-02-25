@@ -2,7 +2,6 @@
 class Model {
   public $resultsPerPage;
   public $pageRange;
-  // private allResults=array();
   function __construct($resultsPerPage,$pageRange){
     $this->resultsPerPage=$resultsPerPage;
     $this->pageRange=$pageRange;

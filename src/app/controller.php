@@ -22,19 +22,18 @@ require_once 'view.php';
       $paramsField = explode('?', $uri)[1];
       $params=explode('=',$paramsField);
       if(strpos($uri,'news')){
-        echo 'rendering news';
         $this->renderNews($paramsField,$params);
       } elseif(strpos($uri,'view')) {
           echo 'rendering full article';
           $this->renderFullArticle($paramsField,$params);
+        } else {
         }
       }
     
     function renderPagination(){
       $numberOfPages=floor($this->model->getAllResults()['numberOfPages']);
-      $this->view->renderPagination($numberOfPages);
+      return $this->view->renderPagination($numberOfPages);
     }
-
     private function renderNews($paramsField,$params){
       $pageNumber;
       $pageNumber=$params[1];
@@ -43,10 +42,10 @@ require_once 'view.php';
       }
       $page=$this->model->closeResults[$pageNumber];
       if ($page!==null){ 
-        $this->view->renderArticlesOnPage($page);
+        $this->view->generate(array('content'=>$page,'pagination'=>$this->renderPagination()));
       } else {
         $page=$this->model->getAllResults($pageNumber)['result'][$pageNumber];
-        $this->view->renderArticlesOnPage($page);
+        $this->view->generate(array('content'=>$page,'pagination'=>$this->renderPagination()));
       }
     }
     private function renderFullArticle($paramsField,$params){
@@ -55,7 +54,4 @@ require_once 'view.php';
       $article=$this->model->getAllResults()['result'][$pageNumber][$articleId];
       $this->view->renderFullArticle($article);
     }
-
-
-
 }

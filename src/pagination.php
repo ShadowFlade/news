@@ -24,3 +24,4 @@ class Pagination {
 }
 $pagination=new Pagination(5,5);
 $pagination->start();
+$pagination->renderPage();

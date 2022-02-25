@@ -1,8 +1,3 @@
-<?php
-require_once 'src/pagination.php';
-$pagination=new Pagination(5,5);
-$pagination->start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,13 +14,16 @@ $pagination->start();
     <div class="news">
       <div div class='news__header'>
         <h1 class="news__title">
-          Новости
+          <?php
+            echo $data['title'];
+          ?>
         </h1>
       </div>
       <div class="news__content">
         <div class="news__items">
         <?php
-          $pagination->renderPage();
+
+          echo $data['content'];
         ?>
         </div>
         <div class="news__pagination">
@@ -34,7 +32,7 @@ $pagination->start();
           </div>
           <ul class="pagination">
           <?php
-            $pagination->renderPagination();
+            echo $data['pagination'];
           ?>
           </ul>
         </div>
