@@ -8,7 +8,6 @@ class Pagination {
     $this->pageRange=$pageRange;
 
   }
-
    function start(){
     $this->controller=new Controller($this->resultsPerPage,$this->pageRange);
     $this->controller->init();
@@ -23,3 +22,5 @@ class Pagination {
     $this->controller->renderPagination();
   }
 }
+$pagination=new Pagination(5,5);
+$pagination->start();

@@ -48,6 +48,10 @@ html {
   display: inline;
   font-size: 1.2rem;
 }
+.article__name {
+  font-size: 1.2rem;
+  color: black;
+}
 .article:first-child {
   margin-top: 0;
 }

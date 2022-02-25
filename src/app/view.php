@@ -1,7 +1,5 @@
 <?php
-class View
-{
-	//public $template_view; // здесь можно указать общий вид по умолчанию.
+class View{
 	
 	private function renderArticle($data){
 		echo "<div class='article'><div class=article__content'> <div class='article__header'><div class='article__date'>" . $data['date'] . "</div><a class='article__title' href='view.php?id=" . $data['id'] . "'>" . $data['title'] . "</a></div><div class='article__text'>" . $data['announce'] . "</div></div></div>";
@@ -16,6 +14,10 @@ class View
 		foreach (range(1,$numberOfPages) as $key => $value) {
 			echo "<li><a class='pagination__item' href='news.php?page=" . $value . "'/>". $value . "</a></li>";
 		}
+	}
+	function renderFullArticle($article){
+		echo "<div class='article'><div class=article__content'> <div class='article__header'><div class='article__name'>" . $article['title'] . "</div>" . "</div><div class='article__text'>" . $article['content'] . "</div></div></div>";
+
 	}
 }
 
