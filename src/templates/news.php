@@ -22,7 +22,6 @@
       <div class="news__content">
         <div class="news__items">
         <?php
-
           echo $data['content'];
         ?>
         </div>

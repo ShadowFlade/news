@@ -22,11 +22,13 @@ require_once 'view.php';
       $paramsField = explode('?', $uri)[1];
       $params=explode('=',$paramsField);
       if(strpos($uri,'news')){
-        $this->renderNews($paramsField,$params);
-      } elseif(strpos($uri,'view')) {
-          echo 'rendering full article';
-          $this->renderFullArticle($paramsField,$params);
-        } else {
+        $this->view->generate($this->renderNews($paramsField,$params));
+      } 
+      elseif(strpos($uri,'view')) {
+        $this->view->generate($this->renderFullArticle($paramsField,$params));
+      } 
+      else {
+
         }
       }
     
@@ -41,17 +43,24 @@ require_once 'view.php';
         $pageNumber=1;
       }
       $page=$this->model->closeResults[$pageNumber];
+      $data;
       if ($page!==null){ 
-        $this->view->generate(array('content'=>$page,'pagination'=>$this->renderPagination()));
+        $data=array('content'=>$this->view->renderArticlesOnPage($page),'pagination'=>$this->renderPagination());
       } else {
         $page=$this->model->getAllResults($pageNumber)['result'][$pageNumber];
-        $this->view->generate(array('content'=>$page,'pagination'=>$this->renderPagination()));
+        $data=array('content'=>$this->view->renderArticlesOnPage($page),'pagination'=>$this->renderPagination());
       }
+      return $data;
     }
     private function renderFullArticle($paramsField,$params){
       $articleId=$params[1];
       $pageNumber=floor($articleId/5);
       $article=$this->model->getAllResults()['result'][$pageNumber][$articleId];
-      $this->view->renderFullArticle($article);
+      $data=array(
+        'content'=>$this->view->renderFullArticle($article),
+        'pagination'=>$this->renderPagination(),
+        'title'=>$article['title']);
+      return $data;
+
     }
 }
