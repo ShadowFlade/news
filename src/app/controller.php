@@ -54,8 +54,7 @@ require_once 'view.php';
     }
     private function renderFullArticle($paramsField,$params){
       $articleId=$params[1];
-      $pageNumber=floor($articleId/5);
-      $article=$this->model->getAllResults()['result'][$pageNumber][$articleId];
+      $article=$this->model->allArticles[$articleId];
       $data=array(
         'content'=>$this->view->renderFullArticle($article),
         'pagination'=>$this->renderPagination(),

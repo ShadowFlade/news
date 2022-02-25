@@ -16,6 +16,9 @@ class View{
 		}
 		return $result;
 	}
+	function renderFullArticle($article){
+		return"<div class='article'><div class=article__content'></div></div><div class='article__text'>" . $article['content'] . "</div>";
+	}
 	function renderPagination($numberOfPages){
 		$result;
 		foreach (range(1,$numberOfPages) as $key => $value) {
@@ -24,9 +27,6 @@ class View{
 		return $result;
 
 	}
-	function renderFullArticle($article){
-		return"<div class='article'><div class=article__content'></div></div><div class='article__text'>" . $article['content'] . "</div>";
 
-	}
 }
 

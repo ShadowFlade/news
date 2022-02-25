@@ -17,6 +17,7 @@ class Model {
     $this->numberOfResults=mysqli_num_rows($result);
     $this->numberOfPages=$this->numberOfResults / $this->resultsPerPage;
     $this->allPages=array();
+    $this->allArticles=array();
     $page=array();
     $articleCount=1;
     $pageCount=1;
@@ -28,9 +29,10 @@ class Model {
         'announce'=>$row['announce'],
         'content'=>$row['content']
       );
-      $page[$articleCount]=$article;
+      $this->allArticles[$article['id']]=$article;
+      $page[$article['id']]=$article;
       $articleCount++;
-      if ($articleCount % $this->resultsPerPage === 1){
+      if ($articleCount % $this->resultsPerPage === 0){
         $this->allPages[$pageCount]=$page;
         $pageCount++;
         $page=null;
