@@ -2,7 +2,7 @@
 require_once 'app/model.php';
 require_once 'app/view.php';
 require_once 'app/controller.php';
-class Pagination {
+class News {
   function __construct($resultsPerPage){
     $this->resultsPerPage=$resultsPerPage;
   }
@@ -14,6 +14,6 @@ class Pagination {
     $this->controller->renderPage();
   }
 }
-$pagination=new Pagination(5,5);
-$pagination->start();
-$pagination->renderPage();
+$news=new News(5,5);
+$news->start();
+$news->renderPage();
