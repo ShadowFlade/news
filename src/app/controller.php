@@ -4,15 +4,13 @@ require_once 'view.php';
 
   class Controller {
     public $resultsPerPage;
-    public $pageRange;
     public $model;
     public $view;
 
-    function __construct($resultsPerPage,$pageRange){
+    function __construct($resultsPerPage){
       $this->view = new View();
-      $this->model=new Model($resultsPerPage,$pageRange);
+      $this->model=new Model($resultsPerPage);
       $this->resultsPerPage=$resultsPerPage;
-      $this->pageRange=$pageRange;
     }
     function init(){
       $this->model->connect();
@@ -27,7 +25,7 @@ require_once 'view.php';
       elseif(strpos($uri,'view')) {
         $this->view->generate($this->renderFullArticle($paramsField,$params));
       }
-      }
+    }
     
     function renderPagination(){
       $numberOfPages=floor($this->model->getAllResults()['numberOfPages']);

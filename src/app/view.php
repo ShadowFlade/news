@@ -23,13 +23,10 @@ class View{
 		$resultStart="<div class='pagination__title'>Страницы:</div><ul class='pagination'>";
 		$result;
 		$resultEnd="</ul>";
-	
 		foreach (range(1,$numberOfPages) as $key => $value) {
 			$result.="<li><a class='pagination__item' href='news.php?page=" . $value . "'/>". $value . "</a></li>";
 		}
 		return $resultStart . $result . $resultEnd;
-
 	}
-
 }
 
