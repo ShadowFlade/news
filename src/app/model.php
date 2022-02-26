@@ -19,7 +19,7 @@ class Model {
     $this->allPages=array();
     $this->allArticles=array();
     $page=array();
-    $articleCount=1;
+    $articleCount=0;
     $pageCount=1;
     while($row=mysqli_fetch_array($result)){
       $article=array(

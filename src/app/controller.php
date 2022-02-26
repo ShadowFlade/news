@@ -26,10 +26,7 @@ require_once 'view.php';
       } 
       elseif(strpos($uri,'view')) {
         $this->view->generate($this->renderFullArticle($paramsField,$params));
-      } 
-      else {
-
-        }
+      }
       }
     
     function renderPagination(){
@@ -57,7 +54,7 @@ require_once 'view.php';
       $article=$this->model->allArticles[$articleId];
       $data=array(
         'content'=>$this->view->renderFullArticle($article),
-        'pagination'=>$this->renderPagination(),
+        'pagination'=>"<a href='news.php' class='article__home-link'>Все новости >></a>",
         'title'=>$article['title']);
       return $data;
 

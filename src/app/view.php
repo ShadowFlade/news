@@ -20,11 +20,14 @@ class View{
 		return"<div class='article'><div class=article__content'></div></div><div class='article__text'>" . $article['content'] . "</div>";
 	}
 	function renderPagination($numberOfPages){
+		$resultStart="<div class='pagination__title'>Страницы:</div><ul class='pagination'>";
 		$result;
+		$resultEnd="</ul>";
+	
 		foreach (range(1,$numberOfPages) as $key => $value) {
 			$result.="<li><a class='pagination__item' href='news.php?page=" . $value . "'/>". $value . "</a></li>";
 		}
-		return $result;
+		return $resultStart . $result . $resultEnd;
 
 	}
 

@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);    
     require_once 'src/pagination.php';
+    header("location:news.php");
 ?>
-<!-- <a href="news.php">Новости</a> -->

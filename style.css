@@ -65,6 +65,13 @@ html {
 .article__text p:first-child {
   margin-top: 0;
 }
+.article__home-link {
+  font-size: 1.5rem;
+  border-bottom: 1px solid black;
+}
+.article__home-link:visited {
+  border-bottom: rgb(88, 25, 138);
+}
 
 .news__pagination {
   margin-top: 0.5rem;
