@@ -35,6 +35,8 @@ class View{
 		$params=explode('=',$paramsField);
 		if($page == $params[1]){
 			return 'active';
+		} else if ($page == 1 && empty($params[1])){
+			return 'active';
 		}
 	}
 }
