@@ -4,6 +4,7 @@
 html {
   font-size: 14px;
 }
+
 .page {
   padding: 1rem 3rem 2rem;
   background-color: rgb(237, 239, 235);
@@ -98,4 +99,8 @@ html {
 
 .pagination__item--clicked {
   background-color: var(--red-color);
+}
+.pagination__item.active {
+  background-color: var(--red-color);
+  color: white;
 }

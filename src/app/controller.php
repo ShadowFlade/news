@@ -31,14 +31,15 @@ require_once 'view.php';
       $numberOfPages=floor($this->model->getAllResults()['numberOfPages']);
       return $this->view->renderPagination($numberOfPages);
     }
+
     private function renderNews($paramsField,$params){
       $pageNumber;
       $pageNumber=$params[1];
       if(empty($pageNumber)){
         $pageNumber=1;
       }
-      $page=$this->model->closeResults[$pageNumber];
       $data;
+      $page=$this->model->allPages[$pageNumber];
       if ($page!==null){ 
         $data=array('content'=>$this->view->renderArticlesOnPage($page),'pagination'=>$this->renderPagination());
       } else {

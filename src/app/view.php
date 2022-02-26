@@ -24,9 +24,18 @@ class View{
 		$result;
 		$resultEnd="</ul>";
 		foreach (range(1,$numberOfPages) as $key => $value) {
-			$result.="<li><a class='pagination__item' href='news.php?page=" . $value . "'/>". $value . "</a></li>";
+			$isActive= $this->setActivePage($value);
+			$result.="<li><a class='pagination__item " . $isActive . "' href='news.php?page=" . $value . "'/>". $value . "</a></li>";
 		}
 		return $resultStart . $result . $resultEnd;
+	}
+	private function setActivePage($page){
+		$uri=$_SERVER['REQUEST_URI'];
+		$paramsField = explode('?', $uri)[1];
+		$params=explode('=',$paramsField);
+		if($page == $params[1]){
+			return 'active';
+		}
 	}
 }
 
