@@ -86,6 +86,11 @@ html {
   display: flex;
   flex-wrap: wrap;
 }
+.pagination__list {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
 .pagination__item {
   background-color: grey;
   color: black;

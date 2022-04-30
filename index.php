@@ -1,9 +1,8 @@
 <?php
-error_reporting(1);
+error_reporting(0);
 spl_autoload_register(function ($class_name) {
 	require 'src/app/' . $class_name . '.php';
 });
-
 $uri = $_SERVER['REQUEST_URI'];
 $matches = [];
 

@@ -1,4 +1,6 @@
 <?php
+// require_once('NewsView.php');
+// require_once('NewsModel.php');
 
 class NewsController
 {
@@ -30,8 +32,7 @@ class NewsController
 		if (empty($data['title'])) {
 			$data['title'] = 'Новости';
 		}
-
-		$this->view->render('list.php', $data);
+		$this->view->generate( $data,'list.php');
 	}
 
 	public function renderDetail($articleId)
