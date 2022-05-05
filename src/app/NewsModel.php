@@ -2,11 +2,10 @@
 
 class NewsModel
 {
-	const IP = '172.21.0.4';
-	const IP2= '172.21.0.4:3306';
+	const IP = '172.21.0.4:3306';
 	static function getCount()
 	{
-		$connection =  new mysqli(self::IP2, 'root', 'example','news' );
+		$connection =  new mysqli(self::IP, 'root', 'example','news' );
 		$sql = 'SELECT COUNT(*) FROM news';
 		$result = mysqli_query($connection, $sql);
 		$arr = mysqli_fetch_array($result);
@@ -15,7 +14,7 @@ class NewsModel
 
 	static function getRows($offset, $limit)
 	{
-		$connection = new mysqli(self::IP2, 'root', 'example','news');
+		$connection = new mysqli(self::IP, 'root', 'example','news');
 		mysqli_set_charset($connection, 'utf8');
 		$sql = "SELECT * FROM news LIMIT $offset, $limit";
 
@@ -42,7 +41,7 @@ class NewsModel
 
 	static function getItem($id)
 	{
-		$connection = new mysqli(self::IP2, 'root', 'example', 'news');
+		$connection = new mysqli(self::IP, 'root', 'example', 'news');
 		mysqli_set_charset($connection, 'utf8');
 		$sql = "SELECT * FROM news WHERE id = $id";
 		$row = mysqli_query($connection, $sql);
