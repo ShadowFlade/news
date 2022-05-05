@@ -2,22 +2,22 @@
 
 class NewsModel
 {
+	const IP = '172.21.0.4';
+	const IP2= '172.21.0.4:3306';
 	static function getCount()
 	{
-		$connection = new mysqli('172.22.0.4:3306', 'root', 'example', 'news');
+		$connection =  new mysqli(self::IP2, 'root', 'example','news' );
 		$sql = 'SELECT COUNT(*) FROM news';
 		$result = mysqli_query($connection, $sql);
 		$arr = mysqli_fetch_array($result);
-
 		return (int) $arr[0];
 	}
 
 	static function getRows($offset, $limit)
 	{
-		$connection = new mysqli('172.22.0.4:3306', 'root', 'example', 'news');
-
+		$connection = new mysqli(self::IP2, 'root', 'example','news');
 		mysqli_set_charset($connection, 'utf8');
-		$sql = "SELECT * FROM news ORDER BY id ASC LIMIT $offset, $limit";
+		$sql = "SELECT * FROM news LIMIT $offset, $limit";
 
 		$result = [];
 		$rows = mysqli_query($connection, $sql);
@@ -33,7 +33,7 @@ class NewsModel
 			];
 
 			if ($article !== null) {
-				array_push($result, $article);
+				$result[] = $article;
 			}
 		}
 
@@ -42,11 +42,10 @@ class NewsModel
 
 	static function getItem($id)
 	{
-		$connection = new mysqli('172.22.0.4:3306', 'root', 'example', 'news');
+		$connection = new mysqli(self::IP2, 'root', 'example', 'news');
 		mysqli_set_charset($connection, 'utf8');
 		$sql = "SELECT * FROM news WHERE id = $id";
 		$row = mysqli_query($connection, $sql);
-
 		return mysqli_fetch_assoc($row);
 	}
 }

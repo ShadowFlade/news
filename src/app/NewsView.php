@@ -6,8 +6,13 @@ class NewsView
 		if (empty($data['title'])) {
 			$data['title'] = 'Новости';
 		}
+        ob_start();
 		include 'src/templates/' . $templateView;
-	}
+        $content = ob_get_contents();
+
+        ob_end_clean();
+        include 'src/layout/layout.php';
+    }
 	private function renderArticle($data)
 	{
 		return "<div class='article'><div class=article__content'> <div class='article__header'><div class='article__date'>" . $data['date'] . "</div><a class='article__title' href='view.php?id=" . $data['id'] . "'>" . $data['title'] . "</a></div><div class='article__text'>" . $data['announce'] . "</div></div></div>";

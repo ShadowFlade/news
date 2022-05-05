@@ -78,3 +78,7 @@ h6 {
   font-weight: 400;
 }
 /*--------------------*/
+a:-webkit-any-link {
+  text-decoration: none;
+  color:inherit;
+}

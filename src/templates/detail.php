@@ -1,3 +1,4 @@
+<?php   extract($data);?>
 <div class="content">
   <div class="news">
     <div div class='news__header'>

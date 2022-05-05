@@ -1,7 +1,4 @@
 <?php
-// require_once('NewsView.php');
-// require_once('NewsModel.php');
-
 class NewsController
 {
 	public $model;
@@ -13,12 +10,12 @@ class NewsController
 	{
 		$this->view = new NewsView();
 		$this->newsModel = new NewsModel(self::RESULTS_PER_PAGE);
-	}
+    }
 
 	public function renderList($pageNumber)
 	{
-		if (empty($pageNumber)) {
-			//тут мб выдаст ошибку, изменить на boolval
+
+        if (empty($pageNumber)) {
 			$pageNumber = 1;
 		}
 		$rows = NewsModel::getRows($pageNumber, self::RESULTS_PER_PAGE);
@@ -37,8 +34,9 @@ class NewsController
 
 	public function renderDetail($articleId)
 	{
+
 		$data = NewsModel::getItem($articleId);
-		$this->view->render('detail.php', $data);
+		$this->view->generate($data,'detail.php' );
 	}
 	public function renderMainPage()
 	{

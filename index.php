@@ -1,7 +1,9 @@
 <?php
-error_reporting(0);
+require_once 'src/app/NewsController.php';
+error_reporting(1);
 spl_autoload_register(function ($class_name) {
-	require 'src/app/' . $class_name . '.php';
+    $file = 'src/app/' . $class_name . '.php';
+	require_once $file;
 });
 $uri = $_SERVER['REQUEST_URI'];
 $matches = [];
@@ -9,7 +11,6 @@ $matches = [];
 $controller = false;
 $action = false;
 $params = [];
-
 if (preg_match('[^/news/?\%]', $uri)) {
 	$controller = 'NewsController';
 	$action = 'renderList';
@@ -30,4 +31,5 @@ if (preg_match('[^/news/?\%]', $uri)) {
 }
 
 $controller = new $controller();
+
 call_user_func([$controller, $action], $params);

@@ -3,7 +3,7 @@
 </head>
 <div class="content">
   <div class="news">
-    <div div class='news__header'>
+    <div  class='news__header'>
       <h1 class="news__title"><?= $title ?></h1>
     </div>
     <div class="news__content">
@@ -35,7 +35,7 @@
 
               <?php foreach (range(1, $data['pagination']) as $key => $value) { ?>
               
-              <li class = 'pagination__item <?= $value == $pageNumber ? 'active' : false ?>'>
+              <li class = 'pagination__item <?= $value == $data['pageNumber'] ? 'active' : false ?>'>
                 <a href = "/news/page-<?= $value ?>/">
                   <?= $value ?> 
                 </a>
