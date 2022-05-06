@@ -2,7 +2,7 @@
 
 class NewsModel
 {
-	const IP = '172.21.0.4:3306';
+	const IP = '172.21.0.3:3306';
 	static function getCount()
 	{
 		$connection =  new mysqli(self::IP, 'root', 'example','news' );
