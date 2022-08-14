@@ -9,6 +9,7 @@
 !['article page'](src/screenshots/viewphp.png)
 
 ## Setup
+
 **With Make**
 
 To start the project you can just go to the project root directory and in terminal run `make all`.
@@ -20,3 +21,4 @@ Also can use `docker-compose up -d` to run in detached mode (without live logs).
 
 _Note_ : configure your server settings in `src/app/model.php` in `$connection` variable.
 
+**need to manually `sh` into php container and enable _mod_rewrite_ with `a2enmod rewrite` and then restart the container**
